@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nur Studio — veb-dizayn va ishlab chiqish</title>
+<meta name="description" content="Kichik biznes uchun sodda, tez va ishonchli veb-saytlar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f6f7;
+    --surface: #ffffff;
+    --ink: #1c2530;
+    --muted: #5d6874;
+    --line: #dde1e5;
+    --accent: #2f6f6a;
+    --accent-dark: #245853;
+    --radius: 6px;
+    --max: 1040px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(100% - 40px, var(--max)); margin-inline: auto; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(245,246,247,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.1rem; text-decoration: none; letter-spacing: -.01em; }
+  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; transition: color .2s; }
+  nav a:hover, nav a.active { color: var(--ink); }
+  .menu-btn {
+    display: none; background: none; border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 8px 12px; font: inherit; font-size: .9rem; color: var(--ink); cursor: pointer;
+  }
+
+  /* Hero */
+  .hero { padding: 96px 0 80px; }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+    line-height: 1.12; letter-spacing: -.025em; font-weight: 800;
+    max-width: 16em; margin: 0 0 22px;
+  }
+  .hero p { max-width: 36em; color: var(--muted); font-size: 1.12rem; margin: 0 0 34px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff;
+    padding: 13px 26px; border-radius: var(--radius); border: 0;
+    font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+    transition: background .2s;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); margin-left: 10px; }
+  .btn.ghost:hover { background: var(--surface); }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  .alt { background: var(--surface); border-block: 1px solid var(--line); }
+  h2 { font-size: 1.75rem; letter-spacing: -.02em; margin: 0 0 12px; }
+  .lead { color: var(--muted); max-width: 38em; margin: 0 0 40px; }
+
+  /* Services */
+  .services { border-top: 1px solid var(--line); }
+  .service {
+    display: grid; grid-template-columns: 240px 1fr; gap: 24px;
+    padding: 26px 0; border-bottom: 1px solid var(--line);
+  }
+  .service h3 { margin: 0; font-size: 1.05rem; }
+  .service p { margin: 0; color: var(--muted); }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .about p { color: var(--muted); margin: 0 0 16px; }
+  .facts { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+  .facts div { display: flex; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .facts div:last-child { border-bottom: 0; }
+  .facts span { color: var(--muted); }
+  .facts strong { font-weight: 600; }
+
+  /* Form */
+  .contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; }
+  .contact address { font-style: normal; color: var(--muted); }
+  .contact address a { color: var(--accent-dark); }
+  form { display: grid; gap: 18px; }
+  label { display: grid; gap: 6px; font-weight: 600; font-size: .92rem; }
+  input, textarea {
+    font: inherit; font-weight: 400; color: var(--ink);
+    padding: 12px 14px; border: 1px solid var(--line);
+    border-radius: var(--radius); background: var(--surface); width: 100%;
+  }
+  textarea { min-height: 130px; resize: vertical; }
+  input:focus, textarea:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  .error { color: #a63a2b; font-size: .85rem; font-weight: 500; min-height: 1.2em; }
+  input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #a63a2b; }
+  #status { margin: 0; font-weight: 600; color: var(--accent-dark); }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* Entrance: one moment only */
+  .hero h1, .hero p, .hero .actions { animation: rise .7s ease both; }
+  .hero p { animation-delay: .1s; }
+  .hero .actions { animation-delay: .2s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .menu-btn { display: block; }
+    nav { position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); display: none; }
+    nav.open { display: block; }
+    nav ul { flex-direction: column; gap: 0; padding: 8px 20px 16px; }
+    nav li a { display: block; padding: 10px 0; }
+    .hero { padding: 64px 0 56px; }
+    .service, .about, .contact { grid-template-columns: 1fr; gap: 10px; }
+    .about, .contact { gap: 32px; }
+    .btn.ghost { margin: 12px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#top" class="logo">Nur Studio</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menyu</button>
+    <nav id="nav" aria-label="Asosiy menyu">
+      <ul>
+        <li><a href="#xizmatlar">Xizmatlar</a></li>
+        <li><a href="#haqimizda">Biz haqimizda</a></li>
+        <li><a href="#aloqa">Aloqa</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Kichik biznes uchun aniq va ishonchli veb-saytlar</h1>
+      <p>Biz sodda, tez ochiladigan va telefonda qulay ishlaydigan saytlar yaratamiz. Ortiqcha bezaksiz, faqat kerakli narsalar.</p>
+      <div class="actions">
+        <a class="btn" href="#aloqa">Loyiha boshlash</a>
+        <a class="btn ghost" href="#xizmatlar">Xizmatlarni ko'rish</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="xizmatlar" class="alt">
+    <div class="wrap">
+      <h2>Xizmatlar</h2>
+      <p class="lead">Saytning g'oyasidan to ishga tushirilishigacha bo'lgan barcha bosqichlar bir joyda.</p>
+      <div class="services">
+        <div class="service">
+          <h3>Vizitka-sayt</h3>
+          <p>Kompaniya yoki mutaxassis haqida qisqa va tushunarli sahifa: xizmatlar, narxlar, aloqa ma'lumotlari.</p>
+        </div>
+        <div class="service">
+          <h3>Dizayn va maket</h3>
+          <p>Brendingizga mos ranglar, shriftlar va tuzilma. Har bir qaror mijozga tushunarli bo'lishi uchun.</p>
+        </div>
+        <div class="service">
+          <h3>Qo'llab-quvvatlash</h3>
+          <p>Sayt ishga tushgandan keyin ham yangilash, tezlikni tekshirish va kichik o'zgarishlarni kiritish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="haqimizda">
+    <div class="wrap about">
+      <div>
+        <h2>Biz haqimizda</h2>
+        <p>Nur Studio — kichik jamoa. Biz har bir loyihaga alohida e'tibor beramiz va va'da qilingan muddatda topshiramiz.</p>
+        <p>Maqsadimiz — saytingiz chiroyli bo'lishi bilan birga mijozlar uni oson topishi va undan foydalanishi.</p>
+      </div>
+      <div class="facts">
+        <div><span>Tajriba</span><strong>5 yil</strong></div>
+        <div><span>Tugallangan loyihalar</span><strong>40+</strong></div>
+        <div><span>O'rtacha muddat</span><strong>2 hafta</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="aloqa" class="alt">
+    <div class="wrap contact">
+      <div>
+        <h2>Aloqa</h2>
+        <p class="lead">Loyihangiz haqida qisqacha yozing. Bir ish kuni ichida javob beramiz.</p>
+        <address>
+          Pochta: <a href="mailto:salom@nurstudio.uz">salom@nurstudio.uz</a><br>
+          Telefon: <a href="tel:+998900000000">+998 90 000 00 00</a><br>
+          Toshkent, O'zbekiston
+        </address>
+      </div>
+      <form id="form" novalidate>
+        <label>Ismingiz
+          <input type="text" name="name" autocomplete="name" required>
+          <span class="error" data-for="name"></span>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+          <span class="error" data-for="email"></span>
+        </label>
+        <label>Xabar
+          <textarea name="message" required></textarea>
+          <span class="error" data-for="message"></span>
+        </label>
+        <button class="btn" type="submit">Xabarni yuborish</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Nur Studio</span>
+    <span>Barcha huquqlar himoyalangan</span>
+  </div>
+</footer>
+
+<script>
+  // Mobil menyu
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  nav.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Joriy bo'limni menyuda belgilash
+  const links = [...nav.querySelectorAll('a')];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+  // Forma tekshiruvi
+  const form = document.getElementById('form');
+  const status = document.getElementById('status');
+  const rules = {
+    name: v => v.trim().length >= 2 || "Ismingizni kiriting.",
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "To'g'ri email manzil kiriting.",
+    message: v => v.trim().length >= 10 || "Xabar kamida 10 ta belgidan iborat bo'lsin."
+  };
+
+  function check(field) {
+    const result = rules[field.name](field.value);
+    const msg = result === true ? '' : result;
+    form.querySelector(`[data-for="${field.name}"]`).textContent = msg;
+    field.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    return !msg;
+  }
+
+  form.querySelectorAll('input, textarea').forEach(f => f.addEventListener('blur', () => check(f)));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    status.textContent = '';
+    const valid = [...form.querySelectorAll('input, textarea')].map(check).every(Boolean);
+    if (!valid) return;
+    // Bu yerda ma'lumotlarni serverga yuborish kodi bo'ladi (fetch)
+    status.textContent = "Xabar yuborildi. Tez orada javob beramiz.";
+    form.reset();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
